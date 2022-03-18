@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 17:03:14 by youngcho          #+#    #+#             */
-/*   Updated: 2022/03/18 17:08:11 by youngcho         ###   ########.fr       */
+/*   Created: 2022/03/18 16:51:44 by youngcho          #+#    #+#             */
+/*   Updated: 2022/03/18 20:20:20 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-
 #include <stddef.h>
+#include <stdio.h>
 
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		ft_isascii(int c);
-int		ft_isprint(int c);
-size_t	ft_strlen(const char *s);
-void	*ft_memset(void *b, int c, size_t len);
-void	ft_bzero(void *s, size_t n);
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+{
+	unsigned char	*dst_p;
+	unsigned char	*src_p;
+	size_t			i;
 
-#endif
+	dst_p = (unsigned char *) dst;
+	src_p = (unsigned char *) src;
+	i = 0;
+
+	if (dst == NULL && src == NULL)
+		return (dst);
+	while (i < n)
+	{
+		((unsigned char *)dst_p)[i] = ((unsigned char *)src_p)[i];
+		i++;
+	}
+	return (dst);
+}
