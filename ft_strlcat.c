@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 16:51:44 by youngcho          #+#    #+#             */
-/*   Updated: 2022/03/21 16:34:20 by youngcho         ###   ########.fr       */
+/*   Created: 2022/03/21 18:04:28 by youngcho          #+#    #+#             */
+/*   Updated: 2022/03/22 12:29:16 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	unsigned char	*dst_p;
-	unsigned char	*src_p;
-	size_t			i;
+	size_t	init_len_of_dst;
+	size_t	i;
 
-	if (n == 0 || dst == src)
-		return (dst);
-	dst_p = (unsigned char *) dst;
-	src_p = (unsigned char *) src;
+	init_len_of_dst = 0;
+	while (dst[init_len_of_dst])
+		init_len_of_dst++;
 	i = 0;
-	while (i < n)
+	if (dstsize == 0 || dstsize < init_len_of_dst)
 	{
-		dst_p[i] = src_p[i];
+		while (src[i])
+			i++;
+		return (dstsize + i);
+	}
+	while (init_len_of_dst + i + 1 < dstsize && src[i])
+	{
+		dst[init_len_of_dst + i] = src[i];
 		i++;
 	}
-	return (dst);
+	dst[init_len_of_dst + i] = '\0';
+	while (src[i])
+		i++;
+	return (init_len_of_dst + i);
 }

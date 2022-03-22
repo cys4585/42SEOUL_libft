@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 20:35:50 by youngcho          #+#    #+#             */
-/*   Updated: 2022/03/21 16:36:46 by youngcho         ###   ########.fr       */
+/*   Created: 2022/03/22 12:30:13 by youngcho          #+#    #+#             */
+/*   Updated: 2022/03/22 12:57:28 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <stddef.h>
 
-size_t	ft_strlen(const char *s)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	size;
+	size_t	i;
 
-	size = 0;
-	while (s[size])
-		size++;
-	return (size);
+	i = 0;
+	while (s1[i] && s2[i] && i < n)
+	{
+		if (s1[i] != s2[i])
+			return ((int)(s1[i] - s2[i]));
+		i++;
+	}
+	if (i == n)
+		return (0);
+	return ((int)(s1[i] - s2[i]));
 }

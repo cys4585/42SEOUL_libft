@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 16:51:44 by youngcho          #+#    #+#             */
-/*   Updated: 2022/03/21 16:34:20 by youngcho         ###   ########.fr       */
+/*   Created: 2022/03/21 11:55:55 by youngcho          #+#    #+#             */
+/*   Updated: 2022/03/21 16:34:08 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*dst_p;
-	unsigned char	*src_p;
-	size_t			i;
+	size_t	i;
 
-	if (n == 0 || dst == src)
+	if (len == 0 || dst == src)
 		return (dst);
-	dst_p = (unsigned char *) dst;
-	src_p = (unsigned char *) src;
-	i = 0;
-	while (i < n)
+	if (src < dst && dst < src + len)
 	{
-		dst_p[i] = src_p[i];
-		i++;
+		while (0 <= --len)
+		{
+			((unsigned char *)dst)[len] = ((unsigned char *)src)[len];
+			if (len == 0)
+				break ;
+		}
+	}
+	else
+	{
+		i = 0;
+		while (i < len)
+		{
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
 	}
 	return (dst);
 }

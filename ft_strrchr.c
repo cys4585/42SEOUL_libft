@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 20:35:50 by youngcho          #+#    #+#             */
-/*   Updated: 2022/03/21 16:36:46 by youngcho         ###   ########.fr       */
+/*   Created: 2022/03/22 15:51:59 by youngcho          #+#    #+#             */
+/*   Updated: 2022/03/22 16:54:50 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <stddef.h>
 
-size_t	ft_strlen(const char *s)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	size;
+	char	*result;
+	int		i;
 
-	size = 0;
-	while (s[size])
-		size++;
-	return (size);
+	result = NULL;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			result = (char *)s + i;
+		i++;
+	}
+	if (s[i] == c)
+		result = (char *)s + i;
+	return (result);
 }
