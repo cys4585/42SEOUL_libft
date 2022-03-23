@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 12:30:13 by youngcho          #+#    #+#             */
-/*   Updated: 2022/03/23 15:20:41 by youngcho         ###   ########.fr       */
+/*   Created: 2022/03/23 19:09:27 by youngcho          #+#    #+#             */
+/*   Updated: 2022/03/23 19:27:30 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include <stdlib.h>
+#include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	i;
+	void	*memory;
 
-	i = 0;
-	while (s1[i] && s2[i] && i < n)
-	{
-		if (s1[i] != s2[i])
-			return ((int)(s1[i] - s2[i]));
-		i++;
-	}
-	if (i == n)
-		return (0);
-	return ((int)(s1[i] - s2[i]));
+	memory = malloc(count * size);
+	if (memory == NULL)
+		return (NULL);
+	ft_bzero(memory, count * size);
+	return (memory);
 }

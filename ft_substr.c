@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 12:30:13 by youngcho          #+#    #+#             */
-/*   Updated: 2022/03/23 15:20:41 by youngcho         ###   ########.fr       */
+/*   Created: 2022/03/23 20:18:23 by youngcho          #+#    #+#             */
+/*   Updated: 2022/03/23 21:40:49 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include <stdlib.h>
+#include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
+	char			*sub;
+	unsigned int	i;
+	size_t			s_len;
 
+	s_len = ft_strlen(s);
+	if (s_len <= start)
+		return (NULL);
+	if (s_len - start < len)
+		len = s_len - start;
+	sub = (char *)malloc(sizeof(char) * len);
+	if (sub == NULL)
+		return (NULL);
 	i = 0;
-	while (s1[i] && s2[i] && i < n)
+	while (i < len)
 	{
-		if (s1[i] != s2[i])
-			return ((int)(s1[i] - s2[i]));
+		sub[i] = s[start + i];
 		i++;
 	}
-	if (i == n)
-		return (0);
-	return ((int)(s1[i] - s2[i]));
+	sub[i] = '\0';
+	return (sub);
 }
