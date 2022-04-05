@@ -6,7 +6,7 @@
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:17:09 by youngcho          #+#    #+#             */
-/*   Updated: 2022/03/21 17:46:15 by youngcho         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:49:39 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = '\0';
+	if (dstsize != 0)
+		dst[i] = '\0';
 	while (src[i] != '\0')
 		i++;
 	return (i);
