@@ -6,7 +6,7 @@
 #    By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 17:37:39 by youngcho          #+#    #+#              #
-#    Updated: 2022/04/05 19:46:42 by youngcho         ###   ########.fr        #
+#    Updated: 2022/04/06 15:02:48 by youngcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,9 @@ BON_SRCS = ft_lstnew.c \
 		   ft_lstlast.c \
 		   ft_lstadd_back.c \
 		   ft_lstdelone.c \
-		   ft_lstclear.c
+		   ft_lstclear.c \
+		   ft_lstiter.c \
+		   ft_lstmap.c
 BON_OBJS = $(BON_SRCS:.c=.o)
 
 AR = ar
