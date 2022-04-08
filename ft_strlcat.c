@@ -6,34 +6,29 @@
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:04:28 by youngcho          #+#    #+#             */
-/*   Updated: 2022/04/04 16:23:18 by youngcho         ###   ########.fr       */
+/*   Updated: 2022/04/07 20:03:46 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stddef.h>
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	init_len_of_dst;
+	size_t	dst_len;
+	size_t	src_len;
 	size_t	i;
 
-	init_len_of_dst = 0;
-	while (dst[init_len_of_dst])
-		init_len_of_dst++;
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	if (dstsize == 0 || dstsize < dst_len)
+		return (dstsize + src_len);
 	i = 0;
-	if (dstsize == 0 || dstsize < init_len_of_dst)
+	while (dst_len + i + 1 < dstsize && src[i])
 	{
-		while (src[i])
-			i++;
-		return (dstsize + i);
-	}
-	while (init_len_of_dst + i + 1 < dstsize && src[i])
-	{
-		dst[init_len_of_dst + i] = src[i];
+		dst[dst_len + i] = src[i];
 		i++;
 	}
-	dst[init_len_of_dst + i] = '\0';
-	while (src[i])
-		i++;
-	return (init_len_of_dst + i);
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
 }

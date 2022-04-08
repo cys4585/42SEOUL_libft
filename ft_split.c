@@ -6,7 +6,7 @@
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 11:32:34 by youngcho          #+#    #+#             */
-/*   Updated: 2022/04/05 14:49:14 by youngcho         ###   ########.fr       */
+/*   Updated: 2022/04/07 19:05:02 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	**ft_split(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	size = count_size(s, c);
-	dst_arr = (char **)malloc(sizeof(char **) * (size + 1));
+	dst_arr = (char **)malloc(sizeof(char *) * (size + 1));
 	if (dst_arr == NULL)
 		return (NULL);
 	dst_arr[size] = NULL;

@@ -6,7 +6,7 @@
 #    By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 17:37:39 by youngcho          #+#    #+#              #
-#    Updated: 2022/04/06 15:02:48 by youngcho         ###   ########.fr        #
+#    Updated: 2022/04/07 20:33:43 by youngcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ BON_OBJS = $(BON_SRCS:.c=.o)
 
 AR = ar
 ARFLAGS = rcs
+BON_ARFLAGS = $(ARFLAGS)u
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
@@ -72,7 +73,7 @@ fclean : clean
 	rm -f $(NAME)
 re : fclean all
 bonus : all $(BON_OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(BON_OBJS)
+	$(AR) $(BON_ARFLAGS) $(NAME) $(BON_OBJS)
 
 $(NAME) : $(OBJS)
 	$(AR) $(ARFLAGS) $@ $?
