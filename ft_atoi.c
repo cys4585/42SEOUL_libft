@@ -6,9 +6,11 @@
 /*   By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:11:22 by youngcho          #+#    #+#             */
-/*   Updated: 2022/04/05 14:51:45 by youngcho         ###   ########.fr       */
+/*   Updated: 2022/04/10 16:57:23 by youngcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <limits.h>
 
 char	*pass_space(const char *str)
 {
@@ -33,19 +35,33 @@ int	check_sign(char **str_p)
 	return (1);
 }
 
-int	convert_to_int(char *str)
+int	convert_to_int(char *str, int sign)
 {
-	int	num;
-	int	i;
+	unsigned long	cutoff;
+	unsigned long	cutlim;
+	unsigned long	num;
+	int				over;
 
+	cutoff = LONG_MAX / 10;
+	cutlim = LONG_MAX % 10;
+	if (sign == -1)
+		cutlim = -(LONG_MIN % 10);
 	num = 0;
-	i = 0;
-	while ('0' <= str[i] && str[i] <= '9' && str[i])
+	over = 0;
+	while ('0' <= *str && *str <= '9' && *str)
 	{
-		num = num * 10 + (str[i] - '0');
-		i++;
+		if (over == 1 || num > cutoff \
+				|| (num == cutoff && (unsigned long)*str - '0' > cutlim))
+			over = 1;
+		else
+			num = num * 10 + (*str - '0');
+		str++;
 	}
-	return (num);
+	if (over && sign == 1)
+		num = LONG_MAX;
+	else if (over && sign == -1)
+		num = LONG_MIN;
+	return (sign * (int)num);
 }
 
 int	ft_atoi(const char *str)
@@ -55,5 +71,5 @@ int	ft_atoi(const char *str)
 
 	tmp_str = pass_space(str);
 	sign = check_sign(&tmp_str);
-	return (sign * convert_to_int(tmp_str));
+	return (convert_to_int(tmp_str, sign));
 }
