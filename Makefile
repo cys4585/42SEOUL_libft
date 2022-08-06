@@ -3,16 +3,28 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youngcho <youngcho@student.42seoul.>       +#+  +:+       +#+         #
+#    By: youngcho <youngcho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/01 17:37:39 by youngcho          #+#    #+#              #
-#    Updated: 2022/04/07 20:33:43 by youngcho         ###   ########.fr        #
+#    Updated: 2022/08/06 16:55:22 by youngcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRCS = ft_atoi.c \
+AR = ar
+ARFLAGS = rcs
+BON_ARFLAGS = $(ARFLAGS)u
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+
+SRCS_DIR = ./srcs/
+OBJS_DIR = ./objs/
+INCS_DIR = ./incs/
+
+INCS_FLAGS	= -I $(INCS_DIR)
+
+SRCS_NAME = ft_atoi.c \
 	   ft_bzero.c \
 	   ft_calloc.c \
 	   ft_isalnum.c \
@@ -46,9 +58,8 @@ SRCS = ft_atoi.c \
 	   ft_substr.c \
 	   ft_tolower.c \
 	   ft_toupper.c
-OBJS = $(SRCS:.c=.o)
 
-BON_SRCS = ft_lstnew.c \
+BON_SRCS_NAME = ft_lstnew.c \
 		   ft_lstadd_front.c \
 		   ft_lstsize.c \
 		   ft_lstlast.c \
@@ -57,26 +68,28 @@ BON_SRCS = ft_lstnew.c \
 		   ft_lstclear.c \
 		   ft_lstiter.c \
 		   ft_lstmap.c
-BON_OBJS = $(BON_SRCS:.c=.o)
 
-AR = ar
-ARFLAGS = rcs
-BON_ARFLAGS = $(ARFLAGS)u
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+SRCS = $(addprefix $(SRCS_DIR), $(SRCS_NAME))
+OBJS = $(addprefix $(OBJS_DIR), $(SRCS_NAME:.c=.o))
+BON_OBJS = $(addprefix $(OBJS_DIR), $(BON_SRCS_NAME:.c=.o))
+
 
 .PHONY : all clean fclean re bonus
 all : $(NAME)
 clean :
-	rm -f $(OBJS) $(BON_OBJS)
+	rm -rf $(OBJS_DIR)
 fclean : clean
 	rm -f $(NAME)
-re : fclean all
+re : fclean 
+	make all
 bonus : all $(BON_OBJS)
 	$(AR) $(BON_ARFLAGS) $(NAME) $(BON_OBJS)
 
 $(NAME) : $(OBJS)
 	$(AR) $(ARFLAGS) $@ $?
 
-%.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) $(INCS_FLAGS) -c $< -o $@
+
+$(OBJS_DIR) :
+	mkdir $(OBJS_DIR)
