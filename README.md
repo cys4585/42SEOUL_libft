@@ -9,5 +9,3 @@
 [Part 2 - Additional functions](./readme_child/Part%202%20-%20Additional%20functions%20778b33b8d45441e79be8c3b147242238.md)
 
 [Bonus part](./readme_child/Bonus%20part%20a10fe6c5c42e453593e76d46977cc0df.md)
-
-https://github.com/cys4585/42Seoul_libft
