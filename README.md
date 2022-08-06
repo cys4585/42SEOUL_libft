@@ -1,6 +1,6 @@
 # Libft
 
-[라이브러리](./readme_child/%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%B3%E1%84%85%E1%85%A5%E1%84%85%E1%85%B5%20d6d485fdba504864b80aaefec72c73ef.md)
+[라이브러리](./readme_child/library.md)
 
 [Makefile](./readme_child/Makefile%20b959fcb98f0b49aa94229faf2c28708f.md)
 
